@@ -7,22 +7,28 @@ import com.glearning.currencyService.CurrencyService;
 
 public class CurrencyClient {
 	public static void main(String[] args) {
-		CurrencyService currencyService = new CurrencyService();
-		
-//		int [] denominations=new int [] {500,200,50,20,10};
-//	    Arrays.sort(denominations);
-//	    int[] sortedDenominations = new int[denominations.length];
-		
-		Scanner s = new Scanner(System.in);
-		System.out.println("enter the size of array :");
-		int size = s.nextInt();
-		int denominations[] = new int[size];
-		System.out.println("enter the values of array :");
-		for (int i = 0; i < size; i++) {
-			denominations[i] = s.nextInt();
-		}
-		System.out.println("enter the amount :");
-		int amount = s.nextInt();
-		currencyService.denominationService(denominations, amount);
+		CurrencyService service = new CurrencyService();
+	        Scanner scanner = new Scanner(System.in);
+	        
+	        // Read the currency denominations
+	        System.out.print("Enter the size of currency denominations: ");
+	        int n = scanner.nextInt();
+	        int[] denominations = new int[n];
+	        System.out.print("Enter the currency denominations value: ");
+	        for (int i = 0; i < n; i++) {
+	            denominations[i] = scanner.nextInt();
+	        }
+	        
+	        // Read the amount to pay
+	        System.out.print("Enter the amount you want to pay: ");
+	        int amount = scanner.nextInt();
+	        
+	        // Sort the denominations in descending order
+	        Arrays.sort(denominations);
+	        int[] sortedDenominations = new int[n];
+	        for (int i = 0; i < n; i++) {
+	            sortedDenominations[i] = denominations[n-1-i];
+	        }
+		service.denominationService(sortedDenominations, amount);
 	}
 }
